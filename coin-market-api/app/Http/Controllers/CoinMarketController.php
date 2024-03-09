@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Coin;
 use App\Models\Group;
+use App\Services\CoinMarketAPIService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -113,6 +114,22 @@ class CoinMarketController extends Controller
             return response()->json(null, 204);
         } catch (\Throwable $e) {
             return response()->json(['error' => 'Erro ao excluir o grupo.'], 500);
+        }
+    }
+
+    /**
+     * Faz uma requisição para a API externa e preenche a tabela de coins com os dados.
+     *
+     * @param  \App\Services\CoinMarketAPIService  $externalAPIService
+     * @return \Illuminate\Http\Response
+     */
+    public function fetchAndFillCoins(CoinMarketAPIService $externalAPIService)
+    {
+        try {
+            $externalAPIService->fetchAndFillCoins();
+            return response()->json(['message' => 'Dados da API externa foram preenchidos com sucesso.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }
