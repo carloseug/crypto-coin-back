@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+/*
+* CoinMarketController Routes
+*/
+Route::get('/coins', [CoinMarketController::class, 'indexCoins']);
+Route::get('/groups', [CoinMarketController::class, 'indexGroups']);
+Route::post('/groups', [CoinMarketController::class, 'createGroup']);
+Route::get('/groups/{id}', [CoinMarketController::class, 'readGroup']);
+Route::put('/groups/{id}', [CoinMarketController::class, 'updateGroup']);
+Route::delete('/groups/{id}', [CoinMarketController::class, 'deleteGroup']);
