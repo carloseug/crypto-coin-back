@@ -15,10 +15,18 @@ class CoinMarketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexCoins()
+    public function indexCoins(Request $request)
     {
         try {
-            $coins = Coin::all();
+            $request->validate([
+                'sort_by' => 'string|in:name,price_usd',
+                'sort_direction' => 'string|in:asc,desc',
+            ]);
+
+            $sortBy = $request->query('sort_by', 'name'); 
+            $sortDirection = $request->query('sort_direction', 'asc'); 
+            $coins = Coin::orderBy($sortBy, $sortDirection)->get();
+
             return response()->json($coins);
         } catch (\Throwable $e) {
             return response()->json(['error' => 'Erro ao recuperar as moedas.'], 500);
