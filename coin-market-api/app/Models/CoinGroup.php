@@ -16,6 +16,12 @@ class CoinGroup extends Model
         'group_id',
     ];
 
+    protected $primaryKey = ['group_id','coin_id'];
+
+    public $incrementing = false;
+
+    public $timestamps = false;
+
     /**
      * Define a relação de pertencimento (belongsTo) com a model Coin.
      *

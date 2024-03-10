@@ -34,6 +34,21 @@ class CoinMarketController extends Controller
     }
 
     /**
+     * Retorna a moeda dado um $id.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCoinById($id)
+    {
+        try {
+            $coin = Coin::findOrFail($id);
+            return response()->json($coin);
+        } catch (\Throwable $e) {
+            return response()->json(['error' => 'Erro ao recuperar a moeda.'], 500);
+        }
+    }
+
+    /**
      * Retorna todos os grupos.
      *
      * @return \Illuminate\Http\Response

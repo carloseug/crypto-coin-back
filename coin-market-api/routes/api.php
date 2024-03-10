@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 * CoinMarketController Routes
 */
 Route::get('/coins', [CoinMarketController::class, 'indexCoins']);
+Route::get('/coins/{id}', [CoinMarketController::class, 'getCoinById']);
 Route::get('/groups', [CoinMarketController::class, 'indexGroups']);
 Route::post('/groups', [CoinMarketController::class, 'createGroup']);
 Route::get('/groups/{id}', [CoinMarketController::class, 'readGroup']);
@@ -40,4 +41,5 @@ Route::get('/coin-groups', [CoinGroupController::class, 'index']);
 Route::post('/coin-groups', [CoinGroupController::class, 'create']);
 Route::get('/coin-groups/{id}', [CoinGroupController::class, 'read']);
 Route::put('/coin-groups/{id}', [CoinGroupController::class, 'update']);
-Route::delete('/coin-groups/{id}', [CoinGroupController::class, 'delete']);
+Route::delete('coin-groups/{groupId}/{coinId}', [CoinGroupController::class, 'delete']);
+Route::get('/coin-group/{groupId}', [CoinGroupController::class, 'readByGroupId']);
