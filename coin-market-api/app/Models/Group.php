@@ -1,16 +1,24 @@
 <?php
 
-namespace App\Models;
+namespace Database\Seeders;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use App\Models\Group;
 
-class Group extends Model
+class GroupSeeder extends Seeder
 {
-    use HasFactory;
+    public function run()
+    {
+        Group::create([
+            'name' => 'Grupo A',
+            'description' => 'Descrição do Grupo A',
+        ]);
 
-    protected $fillable = [
-        'name',
-        'description',
-    ];
+        Group::create([
+            'name' => 'Grupo B',
+            'description' => 'Descrição do Grupo B',
+        ]);
+
+        // Adicione mais dados conforme necessário
+    }
 }
