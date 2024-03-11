@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Services\CoinMarketAPIService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CoinMarketController extends Controller
 {
@@ -59,6 +60,7 @@ class CoinMarketController extends Controller
             $groups = Group::all();
             return response()->json($groups);
         } catch (\Throwable $e) {
+            \Log::error('Erro ao recuperar os grupos ' . $e->getMessage());
             return response()->json(['error' => 'Erro ao recuperar os grupos.'], 500);
         }
     }
@@ -80,6 +82,7 @@ class CoinMarketController extends Controller
             $group = Group::create($request->all());
             return response()->json($group, 201);
         } catch (\Throwable $e) {
+            \Log::error('Erro ao criar o grupo: ' . $e->getMessage());
             return response()->json(['error' => 'Erro ao criar o grupo.'], 500);
         }
     }
