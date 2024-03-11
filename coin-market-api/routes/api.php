@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CoinMarketController as CoinMarketController;
 use App\Http\Controllers\CoinGroupController as CoinGroupController;
+use App\Http\Controllers\FileController as FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,12 @@ Route::get('/coin-groups/{id}', [CoinGroupController::class, 'read']);
 Route::put('/coin-groups/{id}', [CoinGroupController::class, 'update']);
 Route::delete('coin-groups/{groupId}/{coinId}', [CoinGroupController::class, 'delete']);
 Route::get('/coin-group/{groupId}', [CoinGroupController::class, 'readByGroupId']);
+
+/*
+* FileController Routes
+*/
+
+Route::get('/files', [FileController::class, 'index']);
+Route::post('/files', [FileController::class, 'store']);
+Route::put('/files/{id}', [FileController::class, 'update']);
+Route::delete('/files/{id}', [FileController::class, 'destroy']);
