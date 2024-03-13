@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController as AuthController;
 use App\Http\Controllers\CoinMarketController as CoinMarketController;
 use App\Http\Controllers\CoinGroupController as CoinGroupController;
 use App\Http\Controllers\FileController as FileController;
@@ -20,6 +21,15 @@ use App\Http\Controllers\FileController as FileController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**
+ * Auth login routes
+ */
+Route::post('/signup', [AuthController::class, 'signup']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/refresh', [AuthController::class, 'refresh']);
+Route::post('/me', [AuthController::class, 'me']);
 
 
 /*

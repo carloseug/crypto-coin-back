@@ -7,6 +7,7 @@ use App\Services\StorageService;
 use App\Http\Requests\FileRequest;
 use App\Http\Requests\FileUpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FileController extends Controller
 {
